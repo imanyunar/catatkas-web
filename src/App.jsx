@@ -279,12 +279,11 @@ export default function App() {
                         </div>
                       )}
 
-                      <button className="flutter-save-btn">
-                        + SIMPAN TRANSAKSI
-                      </button>
                     </div>
                   </>
                 )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
