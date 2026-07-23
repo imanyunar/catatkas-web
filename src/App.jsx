@@ -8,12 +8,13 @@ import {
   ShieldCheck, 
   Smartphone, 
   CheckCircle2, 
-  HelpCircle, 
   ChevronDown, 
   ChevronUp,
   WifiOff,
   Lock,
-  Sparkles
+  Sparkles,
+  ArrowUpRight,
+  ArrowDownRight
 } from 'lucide-react';
 
 export default function App() {
@@ -35,7 +36,6 @@ export default function App() {
     const isExpense = ['pembelian', 'beli', 'bayar', 'kulakan', 'belanja', 'biaya', 'ongkir', 'gaji', 'sewa', 'listrik'].some(kw => lower.includes(kw));
     const isIncome = ['penjualan', 'jual', 'terima', 'omset', 'laba', 'dapat', 'pendapatan'].some(kw => lower.includes(kw));
 
-    // Extract nominal from text (e.g. 200rb -> 200000)
     let nominal = '200.000';
     if (lower.includes('250rb') || lower.includes('250000')) nominal = '250.000';
     if (lower.includes('50rb') || lower.includes('50000')) nominal = '50.000';
@@ -72,7 +72,7 @@ export default function App() {
           </a>
 
           <div className="nav-tag">
-            <CheckCircle2 size={14} color="#16A34A" /> GIAT 16 UNNES × Desa Manggihan
+            <CheckCircle2 size={14} color="#059669" /> GIAT 16 UNNES × Desa Manggihan
           </div>
 
           <a 
@@ -86,22 +86,22 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Hero Section - App Showcase Focus */}
+      {/* Hero Section */}
       <section className="hero-section">
         <div className="container hero-grid">
-          {/* Left Column: Hero Text */}
+          {/* Left Column: Hero Copy */}
           <div className="hero-left">
             <div className="hero-badge">
               <Sparkles size={14} /> Aplikasi Kas Usaha Desa Manggihan
             </div>
 
             <h1 className="hero-title">
-              Pembukuan Kas UMKM <br />
+              Pencatatan Kas UMKM <br />
               <span className="highlight">Praktis, Cepat & 100% Offline</span>
             </h1>
 
             <p className="hero-subtitle">
-              Catat keuangan usaha harian Anda tanpa ribet. Ketik transaksi otomatis seperti mengirim pesan, tanpa koneksi internet, tanpa daftarkan email, dan 100% gratis.
+              Aplikasi kas digital yang dirancang mudah untuk semua kalangan. Ketik transaksi otomatis seperti mengirim pesan, tanpa koneksi internet, tanpa daftarkan email, dan 100% gratis.
             </p>
 
             <div className="cta-group">
@@ -111,7 +111,7 @@ export default function App() {
                 download="CatatKas_UMKM.apk"
                 onClick={triggerConfetti}
               >
-                <Download size={22} /> Unduh Aplikasi (APK)
+                <Download size={20} /> Unduh Aplikasi (APK)
               </a>
 
               <div className="download-meta">
@@ -145,92 +145,101 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right Column: Realistic Phone Frame Interactive Showcase */}
+          {/* Right Column: Exact Flutter UI Smartphone Mockup */}
           <div className="phone-mockup-wrapper">
-            <div className="phone-live-tag">
-              <span className="live-dot"></span> SIMULASI TERHUBUNG
-            </div>
-
             <div className="phone-frame">
-              <div className="phone-notch"></div>
-              
               <div className="phone-screen">
-                {/* Phone Top Status */}
-                <div className="phone-status-bar">
-                  <span>09:41</span>
-                  <span>CatatKas Mobile</span>
-                  <span>100%</span>
+                {/* Flutter Screen Header */}
+                <div className="flutter-header">
+                  <div className="flutter-profile">
+                    <div className="flutter-avatar">KM</div>
+                    <div>
+                      <div className="flutter-title-sub">CatatKas UMKM</div>
+                      <div className="flutter-title-main">Desa Manggihan</div>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 700 }}>
+                    100% Offline
+                  </div>
                 </div>
 
-                {/* Simulated App Header */}
-                <div className="phone-app-header">
-                  <div className="phone-app-title">TOTAL SALDO KAS SAAT INI</div>
-                  <div className="phone-app-balance">
+                {/* Flutter Executive Balance Card */}
+                <div className="flutter-balance-card">
+                  <div className="flutter-card-label">TOTAL SALDO KAS SAAT INI</div>
+                  <div className="flutter-card-amount">
                     {parsedDemo?.isExpense ? 'Rp 1.250.000' : 'Rp 1.700.000'}
                   </div>
+
+                  <div className="flutter-subcards-grid">
+                    <div className="flutter-subcard">
+                      <div className="flutter-subcard-title">Pemasukan (+)</div>
+                      <div className="flutter-subcard-val green">
+                        <ArrowUpRight size={12} style={{ display: 'inline' }} /> Rp 2.500.000
+                      </div>
+                    </div>
+                    <div className="flutter-subcard">
+                      <div className="flutter-subcard-title">Pengeluaran (-)</div>
+                      <div className="flutter-subcard-val red">
+                        <ArrowDownRight size={12} style={{ display: 'inline' }} /> Rp 1.050.000
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Simulated App Body */}
-                <div className="phone-app-body">
-                  <div className="phone-input-card">
-                    <div className="phone-input-label">
-                      <Zap size={14} /> Mode Ketik Cepat
-                    </div>
-                    <input 
-                      type="text" 
-                      className="phone-input-field" 
-                      value={demoInput}
-                      onChange={(e) => setDemoInput(e.target.value)}
-                      placeholder="Contoh: penjualan telur 150rb..."
-                    />
+                {/* Flutter Ketik Cepat Input Card */}
+                <div className="flutter-quick-card">
+                  <div className="flutter-quick-title">
+                    <Zap size={14} /> Ketik Cepat Transaksi
                   </div>
 
-                  <div className="phone-presets-wrapper">
-                    <div className="phone-presets-label">Coba Contoh Transaksi:</div>
-                    <div className="phone-presets-grid">
-                      <button 
-                        className="phone-preset-chip"
-                        onClick={() => setDemoInput('pembelian 3 gram telur 200rb')}
-                      >
-                        Beli Telur 200rb
-                      </button>
-                      <button 
-                        className="phone-preset-chip"
-                        onClick={() => setDemoInput('penjualan bawang goreng 100 ons 250rb')}
-                      >
-                        Jual Bawang 250rb
-                      </button>
-                      <button 
-                        className="phone-preset-chip"
-                        onClick={() => setDemoInput('bayar plastik 50rb')}
-                      >
-                        Bayar Plastik 50rb
-                      </button>
-                      <button 
-                        className="phone-preset-chip"
-                        onClick={() => setDemoInput('omset penjualan harian 500rb')}
-                      >
-                        Omset Harian 500rb
-                      </button>
-                    </div>
+                  <input 
+                    type="text" 
+                    className="flutter-input-box" 
+                    value={demoInput}
+                    onChange={(e) => setDemoInput(e.target.value)}
+                    placeholder="Contoh: penjualan telur 150rb..."
+                  />
+
+                  <div className="flutter-presets-grid">
+                    <button 
+                      className="flutter-preset-btn"
+                      onClick={() => setDemoInput('pembelian 3 gram telur 200rb')}
+                    >
+                      Beli Telur 200rb
+                    </button>
+                    <button 
+                      className="flutter-preset-btn"
+                      onClick={() => setDemoInput('penjualan bawang goreng 100 ons 250rb')}
+                    >
+                      Jual Bawang 250rb
+                    </button>
+                    <button 
+                      className="flutter-preset-btn"
+                      onClick={() => setDemoInput('bayar plastik 50rb')}
+                    >
+                      Bayar Plastik 50rb
+                    </button>
+                    <button 
+                      className="flutter-preset-btn"
+                      onClick={() => setDemoInput('omset harian 500rb')}
+                    >
+                      Omset 500rb
+                    </button>
                   </div>
 
                   {/* Real-time Parsed Preview */}
                   {parsedDemo && (
-                    <div className={`phone-result-card ${parsedDemo.isExpense ? 'expense' : 'income'}`}>
-                      <div className="phone-result-header">
-                        <span className={`phone-result-type ${parsedDemo.isExpense ? 'expense' : 'income'}`}>
-                          {parsedDemo.type}
-                        </span>
-                        <span className="phone-result-text">{parsedDemo.nominal}</span>
+                    <div className={`flutter-result-card ${parsedDemo.isExpense ? 'expense' : 'income'}`}>
+                      <div style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        {parsedDemo.type}: {parsedDemo.nominal}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#475569', marginTop: '2px' }}>
+                      <div style={{ fontSize: '0.7rem', opacity: 0.85, marginTop: '2px' }}>
                         "{parsedDemo.text}"
                       </div>
                     </div>
                   )}
 
-                  <button className="phone-save-btn">
+                  <button className="flutter-save-btn">
                     + SIMPAN TRANSAKSI
                   </button>
                 </div>
@@ -244,83 +253,77 @@ export default function App() {
       <section className="features-section" id="fitur">
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Fitur Unggulan</div>
-            <h2 className="section-title">Dirancang Khusus untuk Kemudahan UMKM</h2>
+            <div className="section-tag">Fitur Utama</div>
+            <h2 className="section-title">Semua Kemudahan Pencatatan Kas</h2>
             <p className="section-subtitle">
-              Semua fungsi esensial pembukuan kas hadir secara ringkas tanpa kerumitan aplikasi akuntansi rumit.
+              Fungsi esensial pembukuan kas yang dirancang ringkas sesuai kebutuhan UMKM Desa Manggihan.
             </p>
           </div>
 
           <div className="features-grid">
-            {/* Feature 1 */}
-            <div className="feature-card">
-              <div className="feature-icon-box">
-                <Zap size={24} />
+            <div className="flutter-card-item">
+              <div className="flutter-icon-box">
+                <Zap size={22} />
               </div>
-              <h3 className="feature-card-title">Ketik Cepat Otomatis</h3>
-              <p className="feature-card-desc">
-                Cukup ketik kalimat alami seperti <i>"pembelian 3kg telur 200rb"</i>. Sistem secara cerdas memisahkan jenis transaksi, jumlah, dan nominal secara otomatis.
+              <h3 className="flutter-card-h3">Ketik Cepat Otomatis</h3>
+              <p className="flutter-card-p">
+                Ketik kalimat alami seperti <i>"pembelian 3kg telur 200rb"</i>. Aplikasi secara cerdas memisahkan jenis transaksi, jumlah, dan nominal secara otomatis.
               </p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="feature-card">
-              <div className="feature-icon-box">
-                <WifiOff size={24} />
+            <div className="flutter-card-item">
+              <div className="flutter-icon-box">
+                <WifiOff size={22} />
               </div>
-              <h3 className="feature-card-title">100% Kerja Offline</h3>
-              <p className="feature-card-desc">
-                Aplikasi bekerja penuh di HP Anda tanpa butuh internet maupun kuota. Seluruh catatan kas tersimpan aman secara lokal di perangkat Anda sendiri.
+              <h3 className="flutter-card-h3">100% Kerja Offline</h3>
+              <p className="flutter-card-p">
+                Aplikasi bekerja penuh di HP tanpa butuh internet maupun kuota. Seluruh catatan kas tersimpan aman secara lokal di perangkat Anda sendiri.
               </p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="feature-card">
-              <div className="feature-icon-box">
-                <FileText size={24} />
+            <div className="flutter-card-item">
+              <div className="flutter-icon-box">
+                <FileText size={22} />
               </div>
-              <h3 className="feature-card-title">Laporan PDF Ready</h3>
-              <p className="feature-card-desc">
-                Cetak laporan kas bulanan yang rapi dan profesional dalam hitungan detik. Siap dibagikan langsung ke WhatsApp atau dicetak untuk arsip usaha.
+              <h3 className="flutter-card-h3">Cetak Laporan PDF</h3>
+              <p className="flutter-card-p">
+                Buat laporan kas bulanan yang rapi dan profesional dalam hitungan detik. Siap dibagikan langsung ke WhatsApp atau dicetak untuk arsip usaha.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3 Steps Installation */}
+      {/* 3 Steps Section */}
       <section className="steps-section" id="panduan">
         <div className="container">
           <div className="section-header">
             <div className="section-tag">Panduan Pemasangan</div>
-            <h2 className="section-title">3 Langkah Mudah Mulai Menggunakan</h2>
-            <p className="section-subtitle">
-              Tidak perlu pendaftaran akun. Langsung unduh dan gunakan dalam waktu kurang dari 1 menit.
-            </p>
+            <h2 className="section-title">3 Langkah Praktis Mulai Menggunakan</h2>
           </div>
 
           <div className="steps-grid">
             <div className="step-card">
-              <div className="step-number">1</div>
-              <h3 className="step-title">Unduh File APK</h3>
-              <p className="step-desc">
-                Klik tombol <b>"Unduh Aplikasi"</b> di atas. File installer Android (.apk) akan langsung terunduh ke HP Anda.
+              <div className="step-badge">1</div>
+              <h4 className="step-h4">Unduh File APK</h4>
+              <p className="step-p">
+                Klik tombol <b>"Unduh Aplikasi"</b> di atas untuk mendapatkan file installer Android (.apk).
               </p>
             </div>
 
             <div className="step-card">
-              <div className="step-number">2</div>
-              <h3 className="step-title">Pasang di Smartphone</h3>
-              <p className="step-desc">
-                Buka file yang diunduh. Jika muncul konfirmasi keamanan, pilih <i>"Izinkan Pemasangan dari Sumber Ini"</i>.
+              <div className="step-badge">2</div>
+              <h4 className="step-h4">Pasang di Smartphone</h4>
+              <p className="step-p">
+                Buka file APK yang telah terunduh, lalu pilih <i>"Pasang / Install"</i> pada HP Anda.
               </p>
             </div>
 
             <div className="step-card">
-              <div className="step-number">3</div>
-              <h3 className="step-title">Langsung Gunakan</h3>
-              <p className="step-desc">
-                Buka aplikasi <b>CatatKas</b> dan Anda bisa langsung mencatat transaksi pertama tanpa perlu login atau email.
+              <div className="step-badge">3</div>
+              <h4 className="step-h4">Langsung Digunakan</h4>
+              <p className="step-p">
+                Buka aplikasi <b>CatatKas</b> dan Anda siap mencatat kas tanpa perlu mendaftar akun/email.
               </p>
             </div>
           </div>
@@ -346,8 +349,8 @@ export default function App() {
                 a: "Sama sekali tidak. Aplikasi bekerja 100% secara offline. Seluruh data kas tersimpan di dalam memori HP Anda sendiri sehingga aman dan tidak membutuhkan kuota."
               },
               {
-                q: "Apakah data transaksi saya bisa hilang jika aplikasi ditutup?",
-                a: "Tidak. Data disimpan secara permanen di database lokal HP Anda menggunakan SQLite. Data tetap tersimpan rapi walau HP dimatikan."
+                q: "Apakah data transaksi saya aman?",
+                a: "Data disimpan secara permanen di database lokal HP Anda menggunakan SQLite. Data tidak dikirim ke server mana pun sehingga 100% privat."
               },
               {
                 q: "Bagaimana cara melakukan pembaruan jika ada versi baru?",
@@ -374,9 +377,9 @@ export default function App() {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <div className="footer-brand">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <img src="./logo_unnes.png" alt="UNNES" style={{ height: '30px' }} />
-              <div className="footer-brand-title">CatatKas UMKM</div>
+              <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '1.05rem' }}>CatatKas UMKM</span>
             </div>
 
             <div style={{ fontSize: '0.85rem' }}>
