@@ -176,16 +176,14 @@ export default function App() {
                   <div className="flutter-splash-screen">
                     <div className="splash-ambient-glow"></div>
 
-                    <div style={{ marginTop: '16px' }}></div>
+                    <div style={{ marginTop: '10px' }}></div>
 
-                    <div className="splash-logos-card">
-                      <img src="./logo_unnes.png" alt="UNNES" className="splash-logo-img" />
-                      <div className="splash-logo-divider"></div>
-                      <img src="./logo_semarang.png" alt="Kabupaten Semarang" className="splash-logo-img" />
+                    <div className="splash-logo-circle">
+                      <img src="./app_logo.png" alt="CatatKas UMKM Logo" className="splash-logo-img" />
                     </div>
 
                     <div>
-                      <div className="splash-title-brand">CATATKAS</div>
+                      <div className="splash-title-brand">CATATKAS UMKM</div>
                       <div className="splash-pill-tag">GIAT 16 UNNES • DESA MANGGIHAN</div>
                     </div>
 
@@ -201,7 +199,9 @@ export default function App() {
                   <>
                     <div className="flutter-header">
                       <div className="flutter-profile">
-                        <div className="flutter-avatar">KM</div>
+                        <div className="flutter-avatar-box">
+                          <img src="./app_logo.png" alt="CatatKas" className="flutter-avatar-img" />
+                        </div>
                         <div>
                           <div className="flutter-title-sub">CatatKas UMKM</div>
                           <div className="flutter-title-main">Desa Manggihan</div>
