@@ -262,7 +262,7 @@ body {
   color: var(--flutter-maroon);
 }
 
-/* FLUTTER APP UI PHONE MOCKUP (Sleek, Proportional 290px) */
+/* SAMSUNG GALAXY A23 PHONE MOCKUP (20:9 Ratio, Infinity-V Notch) */
 .phone-mockup-wrapper {
   display: flex;
   flex-direction: column;
@@ -300,24 +300,61 @@ body {
   color: #FFFFFF;
 }
 
-.phone-frame {
+.samsung-frame {
   width: 100%;
-  max-width: 290px;
+  max-width: 300px;
   background-color: #0F172A;
-  border-radius: 36px;
-  padding: 8px;
-  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.25), 0 0 0 8px #1E293B;
+  border-radius: 38px;
+  padding: 8px 6px 14px 6px; /* Samsung A23 Bottom Chin */
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.28), 0 0 0 7px #1E293B;
   position: relative;
+}
+
+/* Samsung Infinity-V Teardrop Camera Notch */
+.samsung-v-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 12px;
+  background-color: #0F172A;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  z-index: 25;
+}
+
+/* Samsung Galaxy Side Physical Buttons */
+.samsung-btn-volume {
+  position: absolute;
+  right: -9px;
+  top: 90px;
+  width: 3px;
+  height: 52px;
+  background: #334155;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.samsung-btn-power {
+  position: absolute;
+  right: -9px;
+  top: 155px;
+  width: 3px;
+  height: 38px;
+  background: #334155;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .phone-screen {
   background-color: var(--flutter-bg);
-  border-radius: 28px;
+  border-radius: 30px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   border: 1px solid #1E293B;
-  height: 500px;
+  height: 560px; /* 20:9 Aspect Ratio proportion for 300px width */
   position: relative;
 }
 

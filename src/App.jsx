@@ -163,7 +163,13 @@ export default function App() {
               </button>
             </div>
 
-            <div className="phone-frame">
+            <div className="samsung-frame">
+              {/* Samsung Infinity-V Teardrop Notch */}
+              <div className="samsung-v-notch"></div>
+              {/* Samsung Volume & Power Buttons */}
+              <div className="samsung-btn-volume"></div>
+              <div className="samsung-btn-power"></div>
+
               <div className="phone-screen">
                 {phoneScreen === 'splash' ? (
                   /* Flutter Splash Screen (1:1 with splash_screen.dart) */
