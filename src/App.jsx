@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 
 export default function App() {
+  const [phoneScreen, setPhoneScreen] = useState('home'); // 'home' | 'splash'
   const [demoInput, setDemoInput] = useState('pembelian 3 gram telur 200rb');
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -147,105 +148,146 @@ export default function App() {
 
           {/* Right Column: Exact Flutter UI Smartphone Mockup */}
           <div className="phone-mockup-wrapper">
+            <div className="phone-screen-tabs">
+              <button 
+                className={`phone-tab-btn ${phoneScreen === 'home' ? 'active' : ''}`}
+                onClick={() => setPhoneScreen('home')}
+              >
+                🏠 Beranda Kas
+              </button>
+              <button 
+                className={`phone-tab-btn ${phoneScreen === 'splash' ? 'active' : ''}`}
+                onClick={() => setPhoneScreen('splash')}
+              >
+                🌟 Splash Screen
+              </button>
+            </div>
+
             <div className="phone-frame">
               <div className="phone-screen">
-                {/* Flutter Screen Header */}
-                <div className="flutter-header">
-                  <div className="flutter-profile">
-                    <div className="flutter-avatar">KM</div>
+                {phoneScreen === 'splash' ? (
+                  /* Flutter Splash Screen (1:1 with splash_screen.dart) */
+                  <div className="flutter-splash-screen">
+                    <div className="splash-ambient-glow"></div>
+
+                    <div style={{ marginTop: '16px' }}></div>
+
+                    <div className="splash-logos-card">
+                      <img src="./logo_unnes.png" alt="UNNES" className="splash-logo-img" />
+                      <div className="splash-logo-divider"></div>
+                      <img src="./logo_semarang.png" alt="Kabupaten Semarang" className="splash-logo-img" />
+                    </div>
+
                     <div>
-                      <div className="flutter-title-sub">CatatKas UMKM</div>
-                      <div className="flutter-title-main">Desa Manggihan</div>
+                      <div className="splash-title-brand">CATATKAS</div>
+                      <div className="splash-pill-tag">GIAT 16 UNNES • DESA MANGGIHAN</div>
                     </div>
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 700 }}>
-                    100% Offline
-                  </div>
-                </div>
 
-                {/* Flutter Executive Balance Card */}
-                <div className="flutter-balance-card">
-                  <div className="flutter-card-label">TOTAL SALDO KAS SAAT INI</div>
-                  <div className="flutter-card-amount">
-                    {parsedDemo?.isExpense ? 'Rp 1.250.000' : 'Rp 1.700.000'}
-                  </div>
-
-                  <div className="flutter-subcards-grid">
-                    <div className="flutter-subcard">
-                      <div className="flutter-subcard-title">Pemasukan (+)</div>
-                      <div className="flutter-subcard-val green">
-                        <ArrowUpRight size={12} style={{ display: 'inline' }} /> Rp 2.500.000
-                      </div>
-                    </div>
-                    <div className="flutter-subcard">
-                      <div className="flutter-subcard-title">Pengeluaran (-)</div>
-                      <div className="flutter-subcard-val red">
-                        <ArrowDownRight size={12} style={{ display: 'inline' }} /> Rp 1.050.000
+                    <div>
+                      <div className="splash-spinner"></div>
+                      <div style={{ fontSize: '0.725rem', opacity: 0.85, fontWeight: 600 }}>
+                        Solusi Kas UMKM Modern
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Flutter Ketik Cepat Input Card */}
-                <div className="flutter-quick-card">
-                  <div className="flutter-quick-title">
-                    <Zap size={14} /> Ketik Cepat Transaksi
-                  </div>
-
-                  <input 
-                    type="text" 
-                    className="flutter-input-box" 
-                    value={demoInput}
-                    onChange={(e) => setDemoInput(e.target.value)}
-                    placeholder="Contoh: penjualan telur 150rb..."
-                  />
-
-                  <div className="flutter-presets-grid">
-                    <button 
-                      className="flutter-preset-btn"
-                      onClick={() => setDemoInput('pembelian 3 gram telur 200rb')}
-                    >
-                      Beli Telur 200rb
-                    </button>
-                    <button 
-                      className="flutter-preset-btn"
-                      onClick={() => setDemoInput('penjualan bawang goreng 100 ons 250rb')}
-                    >
-                      Jual Bawang 250rb
-                    </button>
-                    <button 
-                      className="flutter-preset-btn"
-                      onClick={() => setDemoInput('bayar plastik 50rb')}
-                    >
-                      Bayar Plastik 50rb
-                    </button>
-                    <button 
-                      className="flutter-preset-btn"
-                      onClick={() => setDemoInput('omset harian 500rb')}
-                    >
-                      Omset 500rb
-                    </button>
-                  </div>
-
-                  {/* Real-time Parsed Preview */}
-                  {parsedDemo && (
-                    <div className={`flutter-result-card ${parsedDemo.isExpense ? 'expense' : 'income'}`}>
-                      <div style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                        {parsedDemo.type}: {parsedDemo.nominal}
+                ) : (
+                  /* Flutter HomeScreen UI */
+                  <>
+                    <div className="flutter-header">
+                      <div className="flutter-profile">
+                        <div className="flutter-avatar">KM</div>
+                        <div>
+                          <div className="flutter-title-sub">CatatKas UMKM</div>
+                          <div className="flutter-title-main">Desa Manggihan</div>
+                        </div>
                       </div>
-                      <div style={{ fontSize: '0.7rem', opacity: 0.85, marginTop: '2px' }}>
-                        "{parsedDemo.text}"
+                      <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 700 }}>
+                        100% Offline
                       </div>
                     </div>
-                  )}
 
-                  <button className="flutter-save-btn">
-                    + SIMPAN TRANSAKSI
-                  </button>
-                </div>
+                    <div className="flutter-balance-card">
+                      <div className="flutter-card-label">TOTAL SALDO KAS SAAT INI</div>
+                      <div className="flutter-card-amount">
+                        {parsedDemo?.isExpense ? 'Rp 1.250.000' : 'Rp 1.700.000'}
+                      </div>
+
+                      <div className="flutter-subcards-grid">
+                        <div className="flutter-subcard">
+                          <div className="flutter-subcard-title">Pemasukan (+)</div>
+                          <div className="flutter-subcard-val green">
+                            <ArrowUpRight size={11} style={{ display: 'inline' }} /> Rp 2.500k
+                          </div>
+                        </div>
+                        <div className="flutter-subcard">
+                          <div className="flutter-subcard-title">Pengeluaran (-)</div>
+                          <div className="flutter-subcard-val red">
+                            <ArrowDownRight size={11} style={{ display: 'inline' }} /> Rp 1.050k
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flutter-quick-card">
+                      <div className="flutter-quick-title">
+                        <Zap size={13} /> Ketik Cepat Transaksi
+                      </div>
+
+                      <input 
+                        type="text" 
+                        className="flutter-input-box" 
+                        value={demoInput}
+                        onChange={(e) => setDemoInput(e.target.value)}
+                        placeholder="Contoh: penjualan telur 150rb..."
+                      />
+
+                      <div className="flutter-presets-grid">
+                        <button 
+                          className="flutter-preset-btn"
+                          onClick={() => setDemoInput('pembelian 3 gram telur 200rb')}
+                        >
+                          Beli Telur 200rb
+                        </button>
+                        <button 
+                          className="flutter-preset-btn"
+                          onClick={() => setDemoInput('penjualan bawang goreng 100 ons 250rb')}
+                        >
+                          Jual Bawang 250rb
+                        </button>
+                        <button 
+                          className="flutter-preset-btn"
+                          onClick={() => setDemoInput('bayar plastik 50rb')}
+                        >
+                          Bayar Plastik 50rb
+                        </button>
+                        <button 
+                          className="flutter-preset-btn"
+                          onClick={() => setDemoInput('omset harian 500rb')}
+                        >
+                          Omset 500rb
+                        </button>
+                      </div>
+
+                      {parsedDemo && (
+                        <div className={`flutter-result-card ${parsedDemo.isExpense ? 'expense' : 'income'}`}>
+                          <div style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                            {parsedDemo.type}: {parsedDemo.nominal}
+                          </div>
+                          <div style={{ fontSize: '0.7rem', opacity: 0.85, marginTop: '2px' }}>
+                            "{parsedDemo.text}"
+                          </div>
+                        </div>
+                      )}
+
+                      <button className="flutter-save-btn">
+                        + SIMPAN TRANSAKSI
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
-          </div>
+          </div>/div>
         </div>
       </section>
 
