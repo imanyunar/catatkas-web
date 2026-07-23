@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Download, 
-  CheckCircle, 
   Zap, 
   Wallet, 
   FileText, 
@@ -18,13 +17,12 @@ export default function App() {
 
   const triggerConfetti = () => {
     confetti({
-      particleCount: 80,
+      particleCount: 90,
       spread: 70,
       origin: { y: 0.6 }
     });
   };
 
-  // Helper parser sederhana untuk simulator web
   const parseDemo = (text) => {
     if (!text.trim()) return null;
     const lower = text.toLowerCase();
@@ -48,8 +46,10 @@ export default function App() {
       <nav className="navbar">
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
           <a href="#" className="brand-logo">
-            <div className="logo-badge">📊</div>
-            <span className="brand-name">CatatKas UMKM</span>
+            <img src="./logo_unnes.png" alt="UNNES" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
+            <div style={{ width: '1px', height: '24px', background: 'rgba(0,0,0,0.15)', margin: '0 4px' }}></div>
+            <img src="./logo_semarang.png" alt="Kabupaten Semarang" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
+            <span className="brand-name" style={{ marginLeft: '6px' }}>CatatKas UMKM</span>
           </a>
           <span className="badge-tag">✓ 100% Gratis & Direct Download</span>
         </div>
@@ -58,6 +58,11 @@ export default function App() {
       {/* Hero Section */}
       <section className="hero">
         <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+            <img src="./logo_unnes.png" alt="Logo UNNES" style={{ height: '64px', width: 'auto' }} />
+            <img src="./logo_semarang.png" alt="Logo Kab Semarang" style={{ height: '64px', width: 'auto' }} />
+          </div>
+
           <div className="hero-pill">
             <Sparkles size={16} /> Pembukuan Keuangan Digital Desa Manggihan
           </div>
@@ -73,7 +78,7 @@ export default function App() {
 
           <div className="cta-box">
             <a 
-              href="/CatatKas_UMKM.apk" 
+              href="./CatatKas_UMKM.apk" 
               className="btn-download" 
               download="CatatKas_UMKM.apk"
               onClick={triggerConfetti}
