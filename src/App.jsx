@@ -14,7 +14,8 @@ import {
   Lock,
   Sparkles,
   ArrowUpRight,
-  ArrowDownRight
+  ArrowDownRight,
+  MessageCircle
 } from 'lucide-react';
 
 export default function App() {
@@ -414,6 +415,24 @@ export default function App() {
                 )}
               </div>
             ))}
+          </div>
+
+          <div style={{ marginTop: '32px', textAlign: 'center' }}>
+            <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0', padding: '24px 32px', borderRadius: '16px' }}>
+              <MessageCircle size={32} color="#059669" style={{ marginBottom: '12px' }} />
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0F172A', marginBottom: '8px' }}>Ada Pertanyaan Lain?</h3>
+              <p style={{ fontSize: '0.9rem', color: '#64748B', marginBottom: '16px' }}>
+                Jika Anda memiliki pertanyaan terkait aplikasi, jangan ragu untuk menghubungi kami melalui WhatsApp.
+              </p>
+              <a 
+                href="https://wa.me/6287873861108" 
+                target="_blank" 
+                rel="noreferrer"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: '#25D366', color: '#FFFFFF', padding: '10px 20px', borderRadius: '9999px', fontWeight: 700, textDecoration: 'none', fontSize: '0.9rem', boxShadow: '0 4px 12px rgba(37, 211, 102, 0.25)' }}
+              >
+                Hubungi via WhatsApp (0878-7386-1108)
+              </a>
+            </div>
           </div>
         </div>
       </section>
