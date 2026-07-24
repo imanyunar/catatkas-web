@@ -73,12 +73,12 @@ export default function App() {
           </a>
 
           <div className="nav-tag">
-            GIAT 16 UNNES × Desa Manggihan
+            <CheckCircle2 size={14} color="#059669" /> GIAT 16 UNNES × Desa Manggihan
           </div>
 
           <a 
             href="./CatatKas_UMKM.apk" 
-            className="btn-primary" 
+            className="nav-btn" 
             download="CatatKas_UMKM.apk"
             onClick={triggerConfetti}
           >
@@ -93,7 +93,7 @@ export default function App() {
           {/* Left Column: Hero Copy */}
           <div className="hero-left">
             <div className="hero-badge">
-              Aplikasi Kas Usaha Desa Manggihan
+              <Sparkles size={14} /> Aplikasi Kas Usaha Desa Manggihan
             </div>
 
             <h1 className="hero-title">
@@ -108,7 +108,7 @@ export default function App() {
             <div className="cta-group">
               <a 
                 href="./CatatKas_UMKM.apk" 
-                className="btn-primary" 
+                className="btn-download-main" 
                 download="CatatKas_UMKM.apk"
                 onClick={triggerConfetti}
               >
@@ -121,7 +121,7 @@ export default function App() {
                 </span>
                 <span>•</span>
                 <span className="download-meta-item">
-                  Versi 1.0.1
+                  Versi 1.0.1 (53 MB)
                 </span>
                 <span>•</span>
                 <span className="download-meta-item">
