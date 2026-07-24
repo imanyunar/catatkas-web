@@ -120,7 +120,7 @@ export default function App() {
                 </span>
                 <span>•</span>
                 <span className="download-meta-item">
-                  Versi 1.0.1 (53 MB)
+                  Versi 1.0.2 (53 MB)
                 </span>
                 <span>•</span>
                 <span className="download-meta-item">
