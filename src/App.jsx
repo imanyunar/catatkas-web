@@ -72,9 +72,7 @@ export default function App() {
             <span className="brand-title">CatatKas UMKM</span>
           </a>
 
-          <div className="nav-tag">
-            <CheckCircle2 size={14} color="#059669" /> GIAT 16 UNNES × Desa Manggihan
-          </div>
+
 
           <a 
             href="./CatatKas_UMKM.apk" 
