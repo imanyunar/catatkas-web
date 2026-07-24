@@ -178,8 +178,10 @@ export default function App() {
 
                     <div style={{ marginTop: '10px' }}></div>
 
-                    <div className="splash-logo-circle">
-                      <img src="./app_logo.png" alt="CatatKas UMKM Logo" className="splash-logo-img" />
+                    <div className="splash-glass-container">
+                      <img src="./logo_semarang.png" alt="Semarang" className="splash-glass-img" />
+                      <div className="splash-glass-spacer"></div>
+                      <img src="./logo_unnes.png" alt="UNNES" className="splash-glass-img" />
                     </div>
 
                     <div>

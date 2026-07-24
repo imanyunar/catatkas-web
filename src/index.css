@@ -384,25 +384,27 @@ body {
   background: rgba(229, 169, 60, 0.15);
 }
 
-.splash-logo-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
+.splash-glass-container {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.splash-logo-img {
-  width: 100%;
-  height: 100%;
+.splash-glass-img {
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+}
+
+.splash-glass-spacer {
+  width: 16px;
 }
 
 .splash-title-brand {
