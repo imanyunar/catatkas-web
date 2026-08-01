@@ -8,7 +8,8 @@
 
 <p align="center">
   <b>Situs Web Unduhan Resmi Aplikasi CatatKas UMKM Desa Manggihan</b><br/>
-  Program Pengabdian KKN GIAT 16 Universitas Negeri Semarang (UNNES)
+  Program Kerja Individu Iman Yunar Noviadhi dalam KKN GIAT 16 UNNES<br/>
+  Desa Manggihan, Kecamatan Getasan, Kabupaten Semarang
 </p>
 
 <p align="center">
@@ -83,11 +84,12 @@ npm run deploy
 
 ---
 
-## 👨‍💻 Kontributor & Tim Pengembang
+## 👨‍💻 Pengembang & Program Kerja
 
-Aplikasi dan Web ini dikembangkan sebagai bagian dari program kerja pengabdian masyarakat **GIAT 16 Universitas Negeri Semarang (UNNES)** di **Desa Manggihan, Kabupaten Semarang**.
+Aplikasi dan Web ini dikembangkan sebagai **Program Kerja Individu Iman Yunar Noviadhi** dalam kegiatan **KKN GIAT 16 Universitas Negeri Semarang (UNNES)** di **Desa Manggihan, Kecamatan Getasan, Kabupaten Semarang**.
 
-- **Tim Pengembang**: UNNES GIAT 16 Desa Manggihan
+- **Pengembang Utama**: Iman Yunar Noviadhi
+- **Tim KKN**: GIAT 16 UNNES Desa Manggihan
 - **Aplikasi Mobile (Flutter)**: [imanyunar/KasKu](https://github.com/imanyunar/KasKu)
 - **Web Landing Page**: [imanyunar/catatkas-web](https://github.com/imanyunar/catatkas-web)
 
