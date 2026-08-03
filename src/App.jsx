@@ -147,18 +147,36 @@ export default function App() {
 
           {/* Right Column: Exact Flutter UI Smartphone Mockup */}
           <div className="phone-mockup-wrapper">
-            <div className="phone-screen-tabs">
-              <button 
-                className={`phone-tab-btn ${phoneScreen === 'home' ? 'active' : ''}`}
-                onClick={() => setPhoneScreen('home')}
-              >
-                🏠 Beranda Kas
-              </button>
+            <div className="phone-screen-tabs" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
               <button 
                 className={`phone-tab-btn ${phoneScreen === 'splash' ? 'active' : ''}`}
                 onClick={() => setPhoneScreen('splash')}
               >
-                🌟 Splash Screen
+                🌟 Splash
+              </button>
+              <button 
+                className={`phone-tab-btn ${phoneScreen === 'home' ? 'active' : ''}`}
+                onClick={() => setPhoneScreen('home')}
+              >
+                🏠 Beranda
+              </button>
+              <button 
+                className={`phone-tab-btn ${phoneScreen === 'manual' ? 'active' : ''}`}
+                onClick={() => setPhoneScreen('manual')}
+              >
+                ✍️ Manual
+              </button>
+              <button 
+                className={`phone-tab-btn ${phoneScreen === 'history' ? 'active' : ''}`}
+                onClick={() => setPhoneScreen('history')}
+              >
+                📊 Riwayat
+              </button>
+              <button 
+                className={`phone-tab-btn ${phoneScreen === 'settings' ? 'active' : ''}`}
+                onClick={() => setPhoneScreen('settings')}
+              >
+                ⚙️ Pengaturan
               </button>
             </div>
 
@@ -195,7 +213,7 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                ) : (
+                ) : phoneScreen === 'home' ? (
                   /* Flutter HomeScreen UI */
                   <>
                     <div className="flutter-header">
@@ -285,7 +303,91 @@ export default function App() {
                           </div>
                         </div>
                       )}
-
+                    </div>
+                  </>
+                ) : phoneScreen === 'manual' ? (
+                  <>
+                    <div className="flutter-header" style={{ justifyContent: 'center', backgroundColor: '#7A0016', color: 'white' }}>
+                      <div style={{ fontWeight: 'bold', fontSize: '1rem' }}>Tambah Transaksi</div>
+                    </div>
+                    <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      <div style={{ display: 'flex', background: '#F1F5F9', borderRadius: '8px', padding: '4px' }}>
+                        <div style={{ flex: 1, textAlign: 'center', background: '#059669', color: 'white', padding: '8px', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }}>Pemasukan</div>
+                        <div style={{ flex: 1, textAlign: 'center', color: '#64748B', padding: '8px', fontWeight: 'bold', fontSize: '0.8rem' }}>Pengeluaran</div>
+                      </div>
+                      <div style={{ background: 'white', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                        <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 'bold', marginBottom: '4px' }}>Nama Barang/Transaksi</div>
+                        <div style={{ fontSize: '0.9rem', fontWeight: 'bold', borderBottom: '1px solid #E2E8F0', paddingBottom: '8px' }}>Penjualan Telur Ayam</div>
+                      </div>
+                      <div style={{ background: 'white', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                        <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 'bold', marginBottom: '4px' }}>Total Harga (Rp)</div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#059669', borderBottom: '1px solid #E2E8F0', paddingBottom: '8px' }}>150.000</div>
+                      </div>
+                      <div style={{ display: 'flex', gap: '12px' }}>
+                        <div style={{ flex: 1, background: 'white', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                          <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 'bold', marginBottom: '4px' }}>Jumlah</div>
+                          <div style={{ fontSize: '0.9rem', fontWeight: 'bold', borderBottom: '1px solid #E2E8F0', paddingBottom: '8px' }}>5</div>
+                        </div>
+                        <div style={{ flex: 1, background: 'white', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                          <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 'bold', marginBottom: '4px' }}>Satuan</div>
+                          <div style={{ fontSize: '0.9rem', fontWeight: 'bold', borderBottom: '1px solid #E2E8F0', paddingBottom: '8px' }}>kg</div>
+                        </div>
+                      </div>
+                      <button style={{ background: '#7A0016', color: 'white', padding: '12px', borderRadius: '24px', fontWeight: 'bold', border: 'none', marginTop: '10px' }}>SIMPAN TRANSAKSI</button>
+                    </div>
+                  </>
+                ) : phoneScreen === 'history' ? (
+                  <>
+                    <div className="flutter-header" style={{ justifyContent: 'space-between', backgroundColor: '#7A0016', color: 'white' }}>
+                      <div style={{ fontWeight: 'bold', fontSize: '1rem' }}>Riwayat Transaksi</div>
+                      <FileText size={18} />
+                    </div>
+                    <div style={{ padding: '16px', background: '#F8FAFC', flex: 1 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                        <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>Bulan Ini</div>
+                        <div style={{ background: '#E2E8F0', padding: '4px 8px', borderRadius: '12px', fontSize: '0.7rem', fontWeight: 'bold' }}>Ubah Filter</div>
+                      </div>
+                      <div style={{ background: 'white', padding: '12px', borderRadius: '12px', border: '1px solid #E2E8F0', marginBottom: '16px' }}>
+                        <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 'bold' }}>TOTAL PEMASUKAN</div>
+                        <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#059669', marginBottom: '8px' }}>Rp 2.500.000</div>
+                        <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 'bold' }}>TOTAL PENGELUARAN</div>
+                        <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#DC2626' }}>Rp 1.050.000</div>
+                      </div>
+                      <button style={{ width: '100%', background: '#059669', color: 'white', padding: '12px', borderRadius: '24px', fontWeight: 'bold', border: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+                        <Download size={16} /> CETAK LAPORAN PDF
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flutter-header" style={{ justifyContent: 'center', backgroundColor: '#7A0016', color: 'white' }}>
+                      <div style={{ fontWeight: 'bold', fontSize: '1rem' }}>Pengaturan</div>
+                    </div>
+                    <div style={{ padding: '16px', flex: 1 }}>
+                      <div style={{ background: 'white', padding: '16px', borderRadius: '16px', border: '1px solid #E2E8F0', marginBottom: '16px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                          <div style={{ background: '#FEE2E2', padding: '10px', borderRadius: '12px', color: '#7A0016' }}>
+                            <Download size={20} />
+                          </div>
+                          <div>
+                            <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>Penyimpanan Data Aman</div>
+                            <div style={{ fontSize: '0.7rem', color: '#64748B', marginTop: '2px' }}>Backup catatan kas ke HP/WA</div>
+                          </div>
+                        </div>
+                        <button style={{ width: '100%', background: '#7A0016', color: 'white', padding: '10px', borderRadius: '20px', fontWeight: 'bold', border: 'none', fontSize: '0.8rem' }}>BACKUP KE FOLDER DOWNLOAD</button>
+                      </div>
+                      <div style={{ background: 'white', padding: '16px', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                          <div style={{ background: '#F1F5F9', padding: '10px', borderRadius: '12px', color: '#0F172A' }}>
+                            <ArrowUpRight size={20} />
+                          </div>
+                          <div>
+                            <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>Kembalikan Data</div>
+                            <div style={{ fontSize: '0.7rem', color: '#64748B', marginTop: '2px' }}>Restore dari file CSV</div>
+                          </div>
+                        </div>
+                        <button style={{ width: '100%', background: 'white', color: '#0F172A', padding: '10px', borderRadius: '20px', fontWeight: 'bold', border: '1px solid #E2E8F0', fontSize: '0.8rem' }}>RESTORE DARI FILE CSV</button>
+                      </div>
                     </div>
                   </>
                 )}
