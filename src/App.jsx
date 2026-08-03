@@ -19,7 +19,9 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [phoneScreen, setPhoneScreen] = useState('home'); // 'home' | 'splash'
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialScreen = urlParams.get('screen') || 'home';
+  const [phoneScreen, setPhoneScreen] = useState(initialScreen);
   const [demoInput, setDemoInput] = useState('pembelian 3 gram telur 200rb');
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -58,6 +60,227 @@ export default function App() {
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  const isFigmaMode = new URLSearchParams(window.location.search).get('figma') === 'true';
+
+  const renderPhoneScreenContent = () => (
+    <>
+      {phoneScreen === 'splash' && (
+        <div className="flutter-splash-screen" style={isFigmaMode ? { width: '390px', height: '844px' } : {}}>
+          <div className="splash-ambient-glow"></div>
+          <div style={{ marginTop: '10px' }}></div>
+          <div className="splash-glass-container">
+            <img src="./logo_semarang.png" alt="Semarang" className="splash-glass-img" />
+            <div className="splash-glass-spacer"></div>
+            <img src="./logo_unnes.png" alt="UNNES" className="splash-glass-img" />
+          </div>
+          <div>
+            <div className="splash-title-brand">CATATKAS UMKM</div>
+            <div className="splash-pill-tag">GIAT 16 UNNES • DESA MANGGIHAN</div>
+          </div>
+          <div>
+            <div className="splash-spinner"></div>
+            <div style={{ fontSize: '0.725rem', opacity: 0.85, fontWeight: 600 }}>
+              Solusi Kas UMKM Modern
+            </div>
+          </div>
+        </div>
+      )}
+      {phoneScreen === 'home' && (
+        <div style={isFigmaMode ? { width: '390px', height: '844px', display: 'flex', flexDirection: 'column' } : { display: 'contents' }}>
+          <div className="flutter-header">
+            <div className="flutter-profile">
+              <div className="flutter-avatar-box">
+                <img src="./app_logo.png" alt="CatatKas" className="flutter-avatar-img" />
+              </div>
+              <div>
+                <div className="flutter-title-sub">CatatKas UMKM</div>
+                <div className="flutter-title-main">Desa Manggihan</div>
+              </div>
+            </div>
+            <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 700 }}>
+              100% Offline
+            </div>
+          </div>
+          <div className="flutter-balance-card">
+            <div className="flutter-card-label">TOTAL SALDO KAS SAAT INI</div>
+            <div className="flutter-card-amount">
+              {parsedDemo?.isExpense ? 'Rp 1.250.000' : 'Rp 1.700.000'}
+            </div>
+            <div className="flutter-subcards-grid">
+              <div className="flutter-subcard">
+                <div className="flutter-subcard-title">Pemasukan (+)</div>
+                <div className="flutter-subcard-val green">
+                  <ArrowUpRight size={11} style={{ display: 'inline' }} /> Rp 2.500k
+                </div>
+              </div>
+              <div className="flutter-subcard">
+                <div className="flutter-subcard-title">Pengeluaran (-)</div>
+                <div className="flutter-subcard-val red">
+                  <ArrowDownRight size={11} style={{ display: 'inline' }} /> Rp 1.050k
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flutter-chat-area">
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '14px' }}>
+              <div className="flutter-date-badge">Hari Ini</div>
+            </div>
+            {parsedDemo ? (
+              <div className="flutter-chat-bubble out">
+                <div className="flutter-chat-meta">
+                  <span className={`flutter-type-badge ${parsedDemo.isExpense ? 'expense' : 'income'}`}>
+                    {parsedDemo.type}
+                  </span>
+                </div>
+                <div className="flutter-chat-nominal {parsedDemo.isExpense ? 'red' : 'green'}">
+                  {parsedDemo.nominal}
+                </div>
+                <div className="flutter-chat-text">"{parsedDemo.text}"</div>
+                <div className="flutter-chat-time">Baru saja ✓✓</div>
+              </div>
+            ) : (
+              <div style={{ textAlign: 'center', color: '#94a3b8', fontSize: '0.8rem', marginTop: '20px' }}>
+                Mulai ketik transaksi Anda...
+              </div>
+            )}
+          </div>
+          <div className="flutter-input-bar">
+            <input 
+              type="text" 
+              className="flutter-input-field"
+              placeholder="Contoh: jual telur 2kg 50rb"
+              value={demoInput}
+              onChange={(e) => setDemoInput(e.target.value)}
+            />
+            <button className="flutter-send-btn">
+              <Zap size={18} />
+            </button>
+          </div>
+        </div>
+      )}
+      {phoneScreen === 'manual' && (
+        <div style={isFigmaMode ? { width: '390px', height: '844px', display: 'flex', flexDirection: 'column' } : { display: 'contents' }}>
+          <div className="flutter-appbar">
+            <div className="flutter-appbar-title">📝 Isi Manual</div>
+          </div>
+          <div style={{ padding: '20px', flex: 1, backgroundColor: '#FFFFFF' }}>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '8px', display: 'block' }}>Jenis Transaksi</label>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '2px solid #7A0016', color: '#7A0016', fontWeight: 700, textAlign: 'center', backgroundColor: '#fff0f2' }}>PEMASUKAN</div>
+                <div style={{ flex: 1, padding: '12px', borderRadius: '12px', border: '1px solid #cbd5e1', color: '#64748B', fontWeight: 600, textAlign: 'center' }}>PENGELUARAN</div>
+              </div>
+            </div>
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '8px', display: 'block' }}>Nama Barang/Transaksi</label>
+              <div style={{ padding: '14px', borderRadius: '12px', border: '1px solid #cbd5e1', backgroundColor: '#f8fafc', color: '#94a3b8', fontSize: '0.9rem' }}>Contoh: Jual Telur Ayam</div>
+            </div>
+            <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+              <div style={{ flex: 1 }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '8px', display: 'block' }}>Jumlah</label>
+                <div style={{ padding: '14px', borderRadius: '12px', border: '1px solid #cbd5e1', backgroundColor: '#f8fafc', color: '#94a3b8', fontSize: '0.9rem' }}>0</div>
+              </div>
+              <div style={{ flex: 1 }}>
+                <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '8px', display: 'block' }}>Satuan</label>
+                <div style={{ padding: '14px', borderRadius: '12px', border: '1px solid #cbd5e1', backgroundColor: '#f8fafc', color: '#94a3b8', fontSize: '0.9rem' }}>kg/pcs</div>
+              </div>
+            </div>
+            <div style={{ marginBottom: '32px' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: '#475569', marginBottom: '8px', display: 'block' }}>Total Harga (Rp)</label>
+              <div style={{ padding: '14px', borderRadius: '12px', border: '1px solid #cbd5e1', backgroundColor: '#f8fafc', color: '#94a3b8', fontSize: '0.9rem' }}>Rp 0</div>
+            </div>
+            <div style={{ padding: '16px', borderRadius: '12px', backgroundColor: '#7A0016', color: 'white', fontWeight: 700, textAlign: 'center', boxShadow: '0 4px 12px rgba(122,0,22,0.3)' }}>SIMPAN TRANSAKSI</div>
+          </div>
+        </div>
+      )}
+      {phoneScreen === 'history' && (
+        <div style={isFigmaMode ? { width: '390px', height: '844px', display: 'flex', flexDirection: 'column', backgroundColor: '#F8F9FA' } : { display: 'contents' }}>
+          <div className="flutter-appbar">
+            <div className="flutter-appbar-title">📊 Riwayat & Laporan</div>
+          </div>
+          <div style={{ padding: '16px', backgroundColor: 'white', borderBottom: '1px solid #e2e8f0' }}>
+            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+              <div style={{ padding: '6px 14px', borderRadius: '20px', backgroundColor: '#7A0016', color: 'white', fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap' }}>Bulan Ini</div>
+              <div style={{ padding: '6px 14px', borderRadius: '20px', backgroundColor: '#f1f5f9', color: '#64748B', fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap' }}>Minggu Ini</div>
+              <div style={{ padding: '6px 14px', borderRadius: '20px', backgroundColor: '#f1f5f9', color: '#64748B', fontSize: '0.75rem', fontWeight: 600, whiteSpace: 'nowrap' }}>Hari Ini</div>
+            </div>
+          </div>
+          <div style={{ padding: '16px', flex: 1 }}>
+            <div style={{ padding: '16px', borderRadius: '16px', backgroundColor: 'white', border: '1px solid #e2e8f0', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.8rem', color: '#64748B', fontWeight: 600 }}>Total Pemasukan</span>
+                <span style={{ fontSize: '0.85rem', color: '#10b981', fontWeight: 700 }}>+ Rp 2.500.000</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.8rem', color: '#64748B', fontWeight: 600 }}>Total Pengeluaran</span>
+                <span style={{ fontSize: '0.85rem', color: '#ef4444', fontWeight: 700 }}>- Rp 1.050.000</span>
+              </div>
+              <div style={{ height: '1px', backgroundColor: '#e2e8f0', margin: '8px 0' }}></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '0.8rem', color: '#0f172a', fontWeight: 700 }}>Laba Bersih</span>
+                <span style={{ fontSize: '0.9rem', color: '#7A0016', fontWeight: 800 }}>Rp 1.450.000</span>
+              </div>
+            </div>
+            <div style={{ padding: '14px', borderRadius: '12px', backgroundColor: '#FFF4ED', color: '#C2410C', fontWeight: 700, textAlign: 'center', border: '1px solid #FFEDD5', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <FileText size={16} /> CETAK PDF / EXCEL
+            </div>
+          </div>
+        </div>
+      )}
+      {phoneScreen === 'settings' && (
+        <div style={isFigmaMode ? { width: '390px', height: '844px', display: 'flex', flexDirection: 'column', backgroundColor: '#F8F9FA' } : { display: 'contents' }}>
+          <div className="flutter-appbar">
+            <div className="flutter-appbar-title">⚙️ Pengaturan</div>
+          </div>
+          <div style={{ padding: '20px', flex: 1 }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Data & Keamanan</div>
+            
+            <div style={{ backgroundColor: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden', marginBottom: '24px' }}>
+              <div style={{ padding: '16px', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ padding: '8px', backgroundColor: '#f0f9ff', borderRadius: '8px', color: '#0284c7' }}><ShieldCheck size={18} /></div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0f172a' }}>Backup Data Lokal</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748B' }}>Simpan data ke memori HP</div>
+                </div>
+              </div>
+              <div style={{ padding: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ padding: '8px', backgroundColor: '#f0fdf4', borderRadius: '8px', color: '#16a34a' }}><Smartphone size={18} /></div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#0f172a' }}>Kirim Backup via WhatsApp</div>
+                  <div style={{ fontSize: '0.75rem', color: '#64748B' }}>Amankan file lewat chat WA</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Tentang Aplikasi</div>
+            <div style={{ backgroundColor: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '20px', textAlign: 'center' }}>
+              <img src="./app_logo.png" alt="Logo" style={{ width: '60px', height: '60px', marginBottom: '12px' }} />
+              <div style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a' }}>CatatKas UMKM</div>
+              <div style={{ fontSize: '0.8rem', color: '#64748B', marginBottom: '16px' }}>Versi 1.0.2</div>
+              <div style={{ fontSize: '0.75rem', color: '#94a3b8', lineHeight: 1.5 }}>
+                Dibuat untuk Desa Manggihan<br/>oleh Tim GIAT 16 UNNES
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+
+  if (isFigmaMode) {
+    return (
+      <div style={{ 
+        width: '390px', 
+        height: '844px', 
+        backgroundColor: '#F8F9FA', 
+        overflow: 'hidden', 
+        fontFamily: "'Plus Jakarta Sans', sans-serif" 
+      }}>
+        {renderPhoneScreenContent()}
+      </div>
+    );
+  }
 
   return (
     <div>
